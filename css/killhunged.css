@@ -1,0 +1,31 @@
+.kill + label::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    background-image: url("../img/killpeoplejpg.jpg"); /* Иконка белого лица с глазами крестиком */
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+  }
+  
+  .hunged + label::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    background-image: url("../img/hunged.png"); /* Иконка белого человечка с глазами крестиком и веревкой */
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+  }
+  
+  .kill:checked + label::before,
+  .hunged:checked + label::before {
+    opacity: 1;
+  }
+  

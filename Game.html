@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/buttonovergame.css">
+    <link rel="stylesheet" href="css/killhunged.css">
+    <!--<meta http-equiv="Refresh" content="2"> -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Мафия</title>
+</head>
+<body style="color: black; font-weight: 700;" link="#ffd700" vlink="#ffd700">
+  <div class="Wrapper">
+    <div class="Game-container" >
+      <div class="backimg" style="background-image: url('./img/WantedRDR2fon.png'); z-index: 1;
+      "></div>
+      <div id="tableContainer" class="Game-adaptive" style="background-image: url('./img/luxa.org-opacity-changed-WantedRDR2fon.png');  
+      background-color: rgba(0,0,0,0); 
+      background-size: 100%;
+      z-index: 2;"></div>
+  <script src="js/script.js"></script>
+  <script>
+    const tableContainer = document.getElementById("tableContainer");
+const playerCount = localStorage.getItem("playerCount");
+
+if (playerCount) {
+  const table = document.createElement("table");
+  table.border = "0";
+
+  const rowCount = playerCount;
+
+  const assignRoles = (num_players) => {
+    var roles = [
+      "Адвокат", "Бос", "Мафия", "Маньяк", "Детектив", "Сыщик", "Доктор", "Мститель",
+      "Везунчик", "Оборотень", "Судья", "Мафия", "Отравитель", "Ищейка", "Журналист", "Мафия, Революционер"
+    ];
+
+    let assignedRoles = [];
+
+    if (num_players >= 8) {
+      assignedRoles = roles.slice(0, 8);
+
+      if (num_players >= 9) {
+        assignedRoles.push("Везунчик");
+
+        if (num_players >= 10) {
+          assignedRoles.push("Оборотень");
+
+          if (num_players >= 11) {
+            assignedRoles.push("Судья");
+
+            if (num_players >= 12) {
+              assignedRoles.push("Мафия");
+
+              if (num_players >= 13) {
+                assignedRoles.push("Отравитель");
+
+                if (num_players >= 14) {
+                  assignedRoles.splice(11, 1, "Ищейка");
+                  assignedRoles.push("Журналист");
+
+                  if (num_players >= 15) {
+                    assignedRoles.push("Мафия");
+
+                    if (num_players >= 16) {
+                      assignedRoles.push("Революционер");
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    return assignedRoles;
+  };
+
+  const roles = assignRoles(playerCount);
+
+  for (let i = 0; i < rowCount; i++) {
+    const row = table.insertRow();
+
+    const cell1 = row.insertCell();
+    const playerinputnumber = document.createElement("input");
+    playerinputnumber.type = "number";
+    playerinputnumber.classList.add("numberplayerinput");
+    playerinputnumber.style.maxWidth = '30px';
+    cell1.textContent = "Игрок " ;
+    cell1.appendChild(playerinputnumber);
+
+    const cell2 = row.insertCell();
+    cell2.textContent = roles[i];
+
+    const cell3 = row.insertCell();
+    const label = document.createElement("label");
+    const checkbox1 = document.createElement("input");
+    const checkbox2 = document.createElement("input");
+    label.appendChild(checkbox1);
+    label.appendChild(checkbox2);
+    checkbox1.type = "checkbox";
+    checkbox2.type = "checkbox";
+    checkbox1.name = "killRadio";
+    checkbox2.name = "killRadio";
+    checkbox1.classList.add("kill");
+    checkbox2.classList.add("hunged");
+    checkbox1.value = i + 1;
+    checkbox2.value = i + 1;
+    cell3.appendChild(label);
+  }
+
+  tableContainer.appendChild(table);
+}
+  </script>
+    <button  style="margin-top: 3rem;" class="button__last-game">
+      <a href="play.html" >Окончить игру</a>
+    </button>
+    </div>
+  </div>
+  <link rel="stylesheet" href="css/killhunged.css">
+</body>
+</html>
